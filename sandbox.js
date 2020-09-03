@@ -1,13 +1,14 @@
-var character = 'mario';
-var age = 30;
-var isBlackBelt = false;
-// character = 200;
-character = "loigie";
-// age ='ali';
-age = 10;
-// isBlackBelt = 'yes'
-isBlackBelt = true;
-var circ = function (diameter) {
-    return diameter * Math.PI;
+var greet;
+// greet = 'hello';
+greet = function () {
+    console.log('hello again');
 };
-console.log(circ(7.5));
+var add = function (a, b, c) {
+    if (c === void 0) { c = 10; }
+    console.log(a + b);
+    console.log(c);
+};
+var minus = function (a, b) {
+    return a + b;
+};
+var result = minus(10, 5);
