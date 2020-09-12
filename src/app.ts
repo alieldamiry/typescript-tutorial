@@ -1,16 +1,40 @@
-class Invoice {
-    // readonly client: string;
-    // private details: string;
-    // public amount: number;
+//interfaces 
+import { Invoice } from "./classes/Invoice";
+import { Payment } from "./classes/Payment.js";
+import { HasFormatter } from "./interfaces/hasFormatter.js";
 
-    constructor(
-        readonly client: string,
-        private details: string,
-        public amount: number,
-    ) { }
-    format() {
-        return `${this.client} owes ${this.amount} for ${this.details}`
+let docOne: HasFormatter;
+let docTwo: HasFormatter;
+
+docOne = new Invoice('yoshi', 'web work', 250);
+docTwo = new Payment('mario', 'pluming work', 200);
+
+let docs: HasFormatter[] = [];
+docs.push(docOne);
+docs.push(docTwo);
+
+interface isPerson {
+    name: string,
+    age: number,
+    speak(a: string): void;
+    spend(a: number): number;
+}
+
+const me: isPerson = {
+    name: 'shaun',
+    age: 30,
+    speak(text: string): void {
+        console.log(text);
+    },
+    spend(amount: number): number {
+        console.log('I spent' + amount);
+        return amount;
     }
+};
+
+
+let greetPerson = (person: isPerson) => {
+    console.log('hello', person.name);
 }
 
 const inv1 = new Invoice('Ali', 'freelance work', 200);
@@ -36,11 +60,12 @@ const amount = document.querySelector("#amount") as HTMLInputElement;
 
 form.addEventListener('submit', (e: Event) => {
     e.preventDefault();
-    // console.log(
-    //     type.value,
-    //     tofrom.value,
-    //     details.value,
-    //     amount.valueAsNumber,
-    // );
+    let doc: HasFormatter;
+    if (type.value === 'invoice') {
+        doc = new Invoice(tofrom.value, details.value, amount.valueAsNumber);
+    }else{
+        doc = new Payment(tofrom.value, details.value, amount.valueAsNumber);
+    }
+    console.log(doc);
 
 });
